@@ -6,10 +6,10 @@ from astrbot.api import logger
 
 import lispy
 
-def eval_lisp(code: str, timeout_seconds: float = 5) -> object | None:
-    def eval_lisp_internal(q: Queue, code: str) -> None:
+def eval_lisp_internal(q: Queue, code: str) -> None:
         q.put(lispy.Interpreter().run(code))
 
+def eval_lisp(code: str, timeout_seconds: float = 5) -> object | None:
     # 用于获取子进程返回值
     q = Queue()
     p = Process(target=eval_lisp_internal, args=(q, code))
