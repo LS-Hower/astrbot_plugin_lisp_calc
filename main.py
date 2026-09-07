@@ -2,7 +2,7 @@ from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
 from astrbot.api.star import Context, Star, register
 from astrbot.api import logger
 
-from eval_lisp import eval_lisp
+from .eval_lisp import eval_lisp
 
 @register("astrbot_plugin_lisp_calc", "LS_Hower", "语法形如 Lisp 的简单计算器", "0.0.1")
 class MyPlugin(Star):
@@ -20,7 +20,7 @@ class MyPlugin(Star):
         message_str = event.message_str # 用户发的纯文本消息字符串
         message_chain = event.get_messages() # 用户所发的消息的消息链 # from astrbot.api.message_components import *
         logger.info(message_chain)
-        yield event.plain_result(f"运行结果：{eval_lisp(message_str)}") # 发送一条纯文本消息
+        yield event.plain_result(f"运行结果：{eval_lisp(message_str.removeprefix("calc"))}") # 发送一条纯文本消息
 
     async def terminate(self):
         """可选择实现异步的插件销毁方法，当插件被卸载/停用时会调用。"""

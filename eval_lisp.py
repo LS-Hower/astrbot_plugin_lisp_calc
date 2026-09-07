@@ -4,10 +4,11 @@ from multiprocessing import Process, Queue
 
 from astrbot.api import logger
 
-import lispy
+from . import lispy
 
 def eval_lisp_internal(q: Queue, code: str) -> None:
-        q.put(lispy.Interpreter().run(code))
+    q.put(lispy.Interpreter().run(code))
+    return
 
 def eval_lisp(code: str, timeout_seconds: float = 5) -> object | None:
     # 用于获取子进程返回值
