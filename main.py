@@ -1,10 +1,9 @@
 from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
-from astrbot.api.star import Context, Star, register
+from astrbot.api.star import Context, Star
 from astrbot.api import logger
 
 from .eval_lisp import eval_lisp
 
-@register("astrbot_plugin_lisp_calc", "LS_Hower", "语法形如 Lisp 的简单计算器", "0.0.1")
 class MyPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
