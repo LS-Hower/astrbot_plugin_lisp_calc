@@ -26,6 +26,6 @@ def eval_lisp(code: str, timeout_seconds: float = 5) -> object | None:
         return None
     else:
         logger.info(f"Lisp 代码已完成运行。代码：\n{code}\n")
-        res = q.get() if not q.empty() else None
+        res = q.get()
         logger.info(f"运行结果：\n{res}")
         return res
